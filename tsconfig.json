@@ -1,0 +1,8 @@
+{
+  "extends": "$app/tsconfig",
+  "compilerOptions": {
+    "types": ["$app/types", "bun", "vitest/globals", "@testing-library/jest-dom"]
+  },
+  "include": ["src", "*.ts", "*.js"],
+  "exclude": ["src/service-worker"]
+}
