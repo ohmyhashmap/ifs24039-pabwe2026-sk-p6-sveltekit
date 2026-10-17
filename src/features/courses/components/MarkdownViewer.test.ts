@@ -52,7 +52,10 @@ describe("MarkdownViewer", () => {
     ViewerMock.mockImplementationOnce(function () {
       throw new Error("Viewer initialization failed");
     });
-    const { unmount } = render(MarkdownViewer, { props: { content: "test" } });
+    const { container, unmount } = render(MarkdownViewer, { props: { content: "test" } });
+    await new Promise((r) => setTimeout(r, 10));
+    expect(container.querySelector('[data-testid="markdown-viewer"]')).toBeTruthy();
+    expect(ViewerMock).toHaveBeenCalled();
     unmount();
   });
 });

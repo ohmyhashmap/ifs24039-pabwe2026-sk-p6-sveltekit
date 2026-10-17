@@ -95,6 +95,7 @@ describe("ContentModal", () => {
     await fireEvent.input(getByTestId("content-youtube-input"), { target: { value: "https://youtu.be/xyz" } });
 
     await fireEvent.submit(getByTestId("submit-content-modal-btn"));
+    expect(getByTestId("content-modal")).toBeDefined();
   });
 
   it("should react to add content success", async () => {

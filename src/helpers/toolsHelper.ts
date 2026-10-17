@@ -8,9 +8,36 @@ export function formatDate(iso?: string | null): string {
 }
 
 export function getYoutubeId(url: string): string | null {
-  const pattern =
-    /^(?:https?:\/\/)?(?:www\.|m\.)?(?:youtu\.be\/|youtube\.com\/(?:watch\?(?:.*&)?v=|embed\/|shorts\/|live\/))([\w-]{11})(?:[?&#/].*)?$/;
-  return pattern.exec(url.trim())?.[1] ?? null;
+  let parsed: URL;
+  try {
+    const input = url.trim();
+    parsed = new URL(input.includes("://") ? input : `https://${input}`);
+  } catch {
+    return null;
+  }
+
+  if ((parsed.protocol !== "http:" && parsed.protocol !== "https:") || parsed.username || parsed.password) {
+    return null;
+  }
+
+  const hostname = parsed.hostname.toLowerCase();
+  const isShortUrl = ["youtu.be", "www.youtu.be", "m.youtu.be"].includes(hostname);
+  const isYoutubeUrl = ["youtube.com", "www.youtube.com", "m.youtube.com"].includes(hostname);
+  if (!isShortUrl && !isYoutubeUrl) return null;
+
+  const segments = parsed.pathname.split("/");
+  let id: string | null;
+  if (isShortUrl) {
+    id = segments[1];
+  } else if (parsed.pathname === "/watch") {
+    id = parsed.searchParams.get("v");
+  } else if (["embed", "shorts", "live"].includes(segments[1])) {
+    id = segments[2] ?? null;
+  } else {
+    id = null;
+  }
+
+  return id && /^[\w-]{11}$/.test(id) ? id : null;
 }
 
 export function formatRating(value?: string | number | null): string {
@@ -25,7 +52,7 @@ export function formatPercent(value?: string | number | null): number {
 }
 
 export function confirmAction(message: string): boolean {
-  return window.confirm(message);
+  return globalThis.confirm(message);
 }
 
 export function initials(name: string): string {

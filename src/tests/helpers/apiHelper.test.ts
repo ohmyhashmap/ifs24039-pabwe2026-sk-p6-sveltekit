@@ -17,6 +17,8 @@ describe("token & base url", () => {
     expect(getBaseUrl()).toBe("https://open-api.delcom.org/api/v1");
     vi.stubEnv("VITE_DELCOM_BASEURL", "https://x.test/api/");
     expect(getBaseUrl()).toBe("https://x.test/api");
+    vi.stubEnv("VITE_DELCOM_BASEURL", "https://x.test/api////");
+    expect(getBaseUrl()).toBe("https://x.test/api");
   });
 
   it("menghasilkan string kosong bila env tidak diatur", () => {

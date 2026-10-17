@@ -15,8 +15,11 @@ interface RequestOptions {
 
 export const TOKEN_KEY = "delcom_token";
 
-export const getBaseUrl = (): string =>
-  (import.meta.env.VITE_DELCOM_BASEURL ?? "").replace(/\/+$/, "");
+export const getBaseUrl = (): string => {
+  let baseUrl = import.meta.env.VITE_DELCOM_BASEURL ?? "";
+  while (baseUrl.endsWith("/")) baseUrl = baseUrl.slice(0, -1);
+  return baseUrl;
+};
 
 export const getToken = (): string | null => localStorage.getItem(TOKEN_KEY);
 export const setToken = (token: string): void => localStorage.setItem(TOKEN_KEY, token);
@@ -28,7 +31,7 @@ function buildUrl(path: string, query?: RequestOptions["query"]): string {
     if (value !== undefined) params.set(key, String(value));
   }
   const qs = params.toString();
-  return `${getBaseUrl()}${path}${qs ? `?${qs}` : ""}`;
+  return getBaseUrl() + path + (qs ? `?${qs}` : "");
 }
 
 async function request<T>(
@@ -69,6 +72,6 @@ export const apiHelper = {
 export function getErrorMessage(response: ApiResponse<any>): string {
   const first = Object.values(response.data ?? {})
     .flat()
-    .find((value) => typeof value === "string");
-  return (first as string | undefined) ?? response.message;
+    .find((value): value is string => typeof value === "string");
+  return first ?? response.message;
 }

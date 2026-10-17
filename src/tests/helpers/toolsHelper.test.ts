@@ -31,6 +31,13 @@ describe("toolsHelper", () => {
   it("getYoutubeId menolak tautan lain", () => {
     expect(getYoutubeId("https://example.com/video")).toBeNull();
     expect(getYoutubeId("https://youtu.be/pendek")).toBeNull();
+    expect(getYoutubeId("https://youtube.com.evil.test/watch?v=uHyfQV0kbgo")).toBeNull();
+    expect(getYoutubeId("javascript://youtu.be/uHyfQV0kbgo")).toBeNull();
+    expect(getYoutubeId("https://user@youtu.be/uHyfQV0kbgo")).toBeNull();
+    expect(getYoutubeId("https://youtu.be/")).toBeNull();
+    expect(getYoutubeId("https://youtube.com/watch")).toBeNull();
+    expect(getYoutubeId("https://youtube.com/embed")).toBeNull();
+    expect(getYoutubeId("https://youtube.com/channel/uHyfQV0kbgo")).toBeNull();
     expect(getYoutubeId("")).toBeNull();
   });
 

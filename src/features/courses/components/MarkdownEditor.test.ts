@@ -88,11 +88,14 @@ describe("MarkdownEditor", () => {
         value: "fallback text",
       },
     });
+    await new Promise((r) => setTimeout(r, 10));
 
     const textarea = container.querySelector("textarea");
     if (textarea) {
       await fireEvent.input(textarea, { target: { value: "manual input fallback" } });
     }
+    expect(textarea).toHaveValue("manual input fallback");
+    expect(EditorMock).toHaveBeenCalled();
     unmount();
   });
 });

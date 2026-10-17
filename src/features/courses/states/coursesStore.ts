@@ -47,10 +47,12 @@ const patch = (partial: Partial<CoursesState>) =>
   coursesStore.update((state) => ({ ...state, ...partial }));
 
 /** Melengkapi bidang yang mungkin tidak dikirim server agar antarmuka tidak rusak. */
-export function normalizeSummary(raw: Partial<CourseSummary>): CourseSummary {
+export function normalizeSummary(
+  raw: Partial<CourseSummary> & Pick<CourseSummary, "id" | "user_id">,
+): CourseSummary {
   return {
-    id: raw.id!,
-    user_id: raw.user_id!,
+    id: raw.id,
+    user_id: raw.user_id,
     title: raw.title ?? "",
     cover: raw.cover ?? null,
     description: raw.description ?? "",
@@ -63,7 +65,9 @@ export function normalizeSummary(raw: Partial<CourseSummary>): CourseSummary {
   };
 }
 
-export function normalizeDetail(raw: Partial<CourseDetail>): CourseDetail {
+export function normalizeDetail(
+  raw: Partial<CourseDetail> & Pick<CourseDetail, "id" | "user_id">,
+): CourseDetail {
   const contents = raw.contents ?? [];
   return {
     ...normalizeSummary(raw),

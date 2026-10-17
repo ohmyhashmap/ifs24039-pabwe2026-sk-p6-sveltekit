@@ -50,7 +50,7 @@ export default defineConfig(({ mode }) => {
       include: ["src/tests/**/*.{test,spec}.{js,ts}", "src/App.test.ts"],
       coverage: {
         provider: "v8",
-        reporter: ["text", "json", "html"],
+        reporter: ["text", "json", "html", "lcov"],
         include: [
           "src/components/**/*.svelte",
           "src/features/auth/api/*.ts",

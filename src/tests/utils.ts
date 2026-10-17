@@ -62,7 +62,7 @@ export interface RecordedCall {
   body: any;
   headers: Record<string, string>;
 }
-type Handler = unknown | ((call: RecordedCall) => unknown);
+type Handler = Record<string, unknown> | ((call: RecordedCall) => unknown);
 
 /** Mengganti `fetch` global dengan penanggap berbasis "METHOD /path". */
 export function mockFetch(routes: Record<string, Handler>) {
@@ -78,12 +78,14 @@ export function mockFetch(routes: Record<string, Handler>) {
     };
     calls.push(call);
     const handler = routes[`${call.method} ${call.path}`];
-    const payload =
-      handler === undefined
-        ? fail(`Tidak ada mock untuk ${call.method} ${call.path}`)
-        : typeof handler === "function"
-          ? await (handler as (c: RecordedCall) => unknown)(call)
-          : handler;
+    let payload: unknown;
+    if (handler === undefined) {
+      payload = fail(`Tidak ada mock untuk ${call.method} ${call.path}`);
+    } else if (typeof handler === "function") {
+      payload = await handler(call);
+    } else {
+      payload = handler;
+    }
     return new Response(JSON.stringify(payload), {
       status: 200,
       headers: { "Content-Type": "application/json" },

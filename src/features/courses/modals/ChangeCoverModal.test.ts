@@ -57,6 +57,8 @@ describe("ChangeCoverModal", () => {
 
     const fileInput = getByTestId("cover-file-input");
     await fireEvent.change(fileInput, { target: { files: [] } });
+    expect(fileInput).toHaveValue("");
+    expect(document.querySelector('img[alt="Preview"]')).toBeNull();
   });
 
   it("should validate file type", async () => {
