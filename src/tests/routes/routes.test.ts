@@ -3,6 +3,7 @@ import { beforeEach, describe, expect, it } from "vitest";
 import * as rootLayout from "../../routes/+layout";
 import ErrorPage from "../../routes/+error.svelte";
 import HomeRoute from "../../routes/+page.svelte";
+import AuthLayoutRoute from "../../routes/auth/+layout.svelte";
 import LoginRoute from "../../routes/auth/login/+page.svelte";
 import RegisterRoute from "../../routes/auth/register/+page.svelte";
 import ContentRoute from "../../routes/courses/[courseId]/contents/[contentId]/+page.svelte";
@@ -57,6 +58,11 @@ describe("rute", () => {
     login.unmount();
     render(RegisterRoute);
     expect(screen.getByRole("heading", { name: "Buat akun" })).toBeInTheDocument();
+  });
+
+  it("layout auth membungkus konten rute", () => {
+    render(AuthLayoutRoute);
+    expect(screen.getByRole("heading", { name: "Belajar lewat video, kapan saja." })).toBeInTheDocument();
   });
 
   it("/users dan /profile", async () => {

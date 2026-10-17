@@ -4,5 +4,5 @@
     "types": ["$app/types", "bun", "vitest/globals", "@testing-library/jest-dom"]
   },
   "include": ["src", "*.ts", "*.js"],
-  "exclude": ["src/service-worker"]
+  "exclude": ["src/service-worker", "src/features/**/*.test.ts"]
 }
