@@ -19,7 +19,7 @@ export default defineConfig(({ mode }) => {
         adapter: isVercel
           ? vercelAdapter()
           : bunAdapter({
-              envPrefix: "APP_",
+              envPrefix: "SVELTEKIT_",
               serverOptions: {
                 port: port,
               },
