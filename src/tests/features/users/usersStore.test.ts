@@ -1,6 +1,6 @@
 import { get } from "svelte/store";
 import { beforeEach, describe, expect, it } from "vitest";
-import { authStore } from "../../../features/auth/states/authStore";
+import { authStore } from "../../../features/auth/states/authState";
 import {
   loadUsers,
   savePassword,

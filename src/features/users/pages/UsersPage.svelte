@@ -1,7 +1,7 @@
 <script lang="ts">
   import Avatar from "../../../components/Avatar.svelte";
   import { formatDate } from "../../../helpers/toolsHelper";
-  import { authStore } from "../../auth/states/authStore";
+  import { authStore } from "../../auth/states/authState";
   import { loadUsers, usersStore } from "../states/usersStore";
 
   const myId = $derived($authStore.profile?.id);

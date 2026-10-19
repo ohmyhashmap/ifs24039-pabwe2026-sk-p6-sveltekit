@@ -1,5 +1,5 @@
 import { render } from "@testing-library/svelte";
-import { authStore } from "./features/auth/states/authStore";
+import { authStore } from "./features/auth/states/authState";
 import { usersStore } from "./features/users/states/usersStore";
 import { coursesStore } from "./features/courses/states/coursesStore";
 import { mockPageStore, mockGoto, updateMockPage } from "./setupTests";

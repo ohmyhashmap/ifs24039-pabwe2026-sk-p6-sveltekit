@@ -3,7 +3,7 @@ import { get } from "svelte/store";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import Navbar from "../../components/Navbar.svelte";
 import Sidebar from "../../components/Sidebar.svelte";
-import { authStore } from "../../features/auth/states/authStore";
+import { authStore } from "../../features/auth/states/authState";
 import { mockFetch, ok, resetStores, setPage, signIn, user } from "../utils";
 
 describe("Navbar", () => {

@@ -4,7 +4,7 @@
   import { useInput } from "../../../hooks/useInput";
   import AuthSessionRedirect from "../components/AuthSessionRedirect.svelte";
   import AuthLayout from "../layouts/AuthLayout.svelte";
-  import { authStore, register } from "../states/authStore";
+  import { authStore, register } from "../states/authState";
 
   const { value: name } = useInput();
   const { value: email } = useInput();

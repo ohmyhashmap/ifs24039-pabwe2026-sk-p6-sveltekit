@@ -16,7 +16,7 @@
   } from "lucide-svelte";
   import { useInput } from "../../../hooks/useInput";
   import { confirmAction, formatPercent, formatRating } from "../../../helpers/toolsHelper";
-  import { authStore } from "../../auth/states/authStore";
+  import { authStore } from "../../auth/states/authState";
   import ChangeCoverModal from "../components/ChangeCoverModal.svelte";
   import ChangeModal from "../components/ChangeModal.svelte";
   import ContentModal from "../components/ContentModal.svelte";

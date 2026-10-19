@@ -3,7 +3,7 @@
   import Navbar from "../../../components/Navbar.svelte";
   import Sidebar from "../../../components/Sidebar.svelte";
   import AuthSessionRedirect from "../../auth/components/AuthSessionRedirect.svelte";
-  import { authStore, loadProfile } from "../../auth/states/authStore";
+  import { authStore, loadProfile } from "../../auth/states/authState";
 
   let { children }: { children: Snippet } = $props();
   let menuOpen = $state(false);

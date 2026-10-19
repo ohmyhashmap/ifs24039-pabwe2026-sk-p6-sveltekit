@@ -2,7 +2,7 @@
   import { untrack } from "svelte";
   import { Plus, Search, Trash2 } from "lucide-svelte";
   import { confirmAction, matchesQuery } from "../../../helpers/toolsHelper";
-  import { authStore } from "../../auth/states/authStore";
+  import { authStore } from "../../auth/states/authState";
   import AddModal from "../components/AddModal.svelte";
   import CourseCard from "../components/CourseCard.svelte";
   import {

@@ -1,7 +1,7 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/svelte";
 import { get } from "svelte/store";
 import { beforeEach, describe, expect, it } from "vitest";
-import { authStore } from "../../../features/auth/states/authStore";
+import { authStore } from "../../../features/auth/states/authState";
 import ProfilePage from "../../../features/users/pages/ProfilePage.svelte";
 import UsersPage from "../../../features/users/pages/UsersPage.svelte";
 import { toasts } from "../../../states/toastStore";

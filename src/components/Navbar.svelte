@@ -1,6 +1,6 @@
 <script lang="ts">
   import { LogOut, Menu } from "lucide-svelte";
-  import { authStore, logout } from "../features/auth/states/authStore";
+  import { authStore, logout } from "../features/auth/states/authState";
   import Avatar from "./Avatar.svelte";
   import Logo from "./Logo.svelte";
 

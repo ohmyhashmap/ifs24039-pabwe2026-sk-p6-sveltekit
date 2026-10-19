@@ -5,7 +5,7 @@ import { get } from "svelte/store";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import CourseCard from "../../../features/courses/components/CourseCard.svelte";
 import CourseLayout from "../../../features/courses/layouts/CourseLayout.svelte";
-import { authStore } from "../../../features/auth/states/authStore";
+import { authStore } from "../../../features/auth/states/authState";
 import { fail, mockFetch, ok, resetStores, setPage, signIn, summary, user } from "../../utils";
 
 beforeEach(() => {

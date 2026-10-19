@@ -3,7 +3,7 @@ import { get } from "svelte/store";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import HomePage from "../../../features/courses/pages/HomePage.svelte";
 import { coursesStore } from "../../../features/courses/states/coursesStore";
-import { authStore } from "../../../features/auth/states/authStore";
+import { authStore } from "../../../features/auth/states/authState";
 import { deferred, fail, mockFetch, ok, resetStores, signIn, summary, typeInto } from "../../utils";
 
 const courses = [

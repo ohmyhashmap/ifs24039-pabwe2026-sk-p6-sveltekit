@@ -3,7 +3,7 @@
   import { useInput } from "../../../hooks/useInput";
   import AuthSessionRedirect from "../components/AuthSessionRedirect.svelte";
   import AuthLayout from "../layouts/AuthLayout.svelte";
-  import { authStore, login } from "../states/authStore";
+  import { authStore, login } from "../states/authState";
 
   const { value: email } = useInput();
   const { value: password } = useInput();

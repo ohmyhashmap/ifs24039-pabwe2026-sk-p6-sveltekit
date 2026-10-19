@@ -7,7 +7,7 @@ import AuthSessionRedirect from "../../../features/auth/components/AuthSessionRe
 import AuthLayout from "../../../features/auth/layouts/AuthLayout.svelte";
 import LoginPage from "../../../features/auth/pages/LoginPage.svelte";
 import RegisterPage from "../../../features/auth/pages/RegisterPage.svelte";
-import { authStore } from "../../../features/auth/states/authStore";
+import { authStore } from "../../../features/auth/states/authState";
 import { toasts } from "../../../states/toastStore";
 import { deferred, fail, mockFetch, ok, resetStores, signIn, typeInto, user } from "../../utils";
 

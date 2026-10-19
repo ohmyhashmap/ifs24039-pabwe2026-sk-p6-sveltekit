@@ -3,7 +3,7 @@
   import { Camera, KeyRound, Save } from "lucide-svelte";
   import Avatar from "../../../components/Avatar.svelte";
   import { useInput } from "../../../hooks/useInput";
-  import { authStore } from "../../auth/states/authStore";
+  import { authStore } from "../../auth/states/authState";
   import { savePassword, savePhoto, saveProfile } from "../states/usersStore";
 
   const initial = get(authStore).profile!;

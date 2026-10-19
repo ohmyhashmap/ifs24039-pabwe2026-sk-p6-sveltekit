@@ -8,7 +8,7 @@ import {
   logout,
   register,
   setProfile,
-} from "../../../features/auth/states/authStore";
+} from "../../../features/auth/states/authState";
 import { toasts } from "../../../states/toastStore";
 import { fail, mockFetch, ok, resetStores, signIn, user } from "../../utils";
 

@@ -1,7 +1,7 @@
 import { writable } from "svelte/store";
 import { getErrorMessage, type ApiResponse } from "../../../helpers/apiHelper";
 import { notify } from "../../../states/toastStore";
-import { loadProfile, setProfile } from "../../auth/states/authStore";
+import { loadProfile, setProfile } from "../../auth/states/authState";
 import { userApi } from "../api/userApi";
 import type { User } from "../types";
 

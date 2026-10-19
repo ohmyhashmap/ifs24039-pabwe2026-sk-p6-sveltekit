@@ -1,6 +1,6 @@
 <script lang="ts">
   import { goto } from "$app/navigation";
-  import { authStore } from "../states/authStore";
+  import { authStore } from "../states/authState";
 
   /**
    * guest     : halaman tamu (login/daftar) dialihkan ke beranda bila profil sudah tersedia.

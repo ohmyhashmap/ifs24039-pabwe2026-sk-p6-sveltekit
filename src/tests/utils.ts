@@ -1,6 +1,6 @@
 import { vi } from "vitest";
 import { page } from "$app/state";
-import { authStore } from "../features/auth/states/authStore";
+import { authStore } from "../features/auth/states/authState";
 import { resetCoursesState } from "../features/courses/states/coursesStore";
 import type { CourseContent, CourseDetail, CourseSummary } from "../features/courses/types";
 import { usersStore } from "../features/users/states/usersStore";

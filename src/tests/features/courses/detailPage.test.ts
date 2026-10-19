@@ -2,7 +2,7 @@ import { goto } from "$app/navigation";
 import { fireEvent, render, screen, waitFor, within } from "@testing-library/svelte";
 import { get } from "svelte/store";
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { authStore } from "../../../features/auth/states/authStore";
+import { authStore } from "../../../features/auth/states/authState";
 import DetailPage from "../../../features/courses/pages/DetailPage.svelte";
 import { coursesStore } from "../../../features/courses/states/coursesStore";
 import type { CourseDetail } from "../../../features/courses/types";

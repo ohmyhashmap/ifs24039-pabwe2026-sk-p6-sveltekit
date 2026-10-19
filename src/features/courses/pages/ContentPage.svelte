@@ -2,7 +2,7 @@
   import { untrack } from "svelte";
   import { ArrowLeft, Check, Lock, Video } from "lucide-svelte";
   import { getYoutubeId } from "../../../helpers/toolsHelper";
-  import { authStore } from "../../auth/states/authStore";
+  import { authStore } from "../../auth/states/authState";
   import {
     clearMutations,
     coursesStore,
