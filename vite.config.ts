@@ -29,6 +29,16 @@ export default defineConfig(({ mode }) => {
       tailwindcss(),
       svelteTesting(),
     ],
+
+    // ============================================================
+    // PENTING: prioritaskan .ts di atas .js
+    // Mencegah file .js stale (sisa deploy lama) menutupi file .ts
+    // yang baru, sehingga error MISSING_EXPORT tidak terulang.
+    // ============================================================
+    resolve: {
+      extensions: [".mts", ".ts", ".mjs", ".js", ".jsx", ".tsx", ".json"],
+    },
+
     server: {
       port: port,
     },
