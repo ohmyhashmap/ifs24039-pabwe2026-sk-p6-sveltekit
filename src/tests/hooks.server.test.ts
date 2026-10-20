@@ -2,14 +2,19 @@ import { describe, expect, it, vi } from "vitest";
 import { handle } from "../hooks.server";
 
 describe("server hook", () => {
-  it("menonaktifkan cache dan ETag pada /auth/login", async () => {
+  it("menonaktifkan cache dan ETag pada halaman HTML", async () => {
     const originalResponse = new Response("Halaman login", {
       headers: { etag: '"cached-etag"' },
     });
     const resolve = vi.fn(async () => originalResponse);
 
     const response = await handle({
-      event: { url: new URL("http://localhost/auth/login") },
+      event: {
+        request: new Request("http://localhost/", {
+          headers: { accept: "text/html" },
+        }),
+        url: new URL("http://localhost/"),
+      },
       resolve,
     });
 
@@ -18,12 +23,17 @@ describe("server hook", () => {
     expect(response.headers.get("etag")).toBeNull();
   });
 
-  it("tidak mengubah cache untuk rute lain", async () => {
+  it("tidak mengubah cache untuk permintaan non-HTML", async () => {
     const originalResponse = new Response("Halaman lain");
     const resolve = vi.fn(async () => originalResponse);
 
     const response = await handle({
-      event: { url: new URL("http://localhost/") },
+      event: {
+        request: new Request("http://localhost/api", {
+          headers: { accept: "application/json" },
+        }),
+        url: new URL("http://localhost/api"),
+      },
       resolve,
     });
 

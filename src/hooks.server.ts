@@ -1,4 +1,5 @@
 type HookEvent = {
+  request: Request;
   url: URL;
 };
 
@@ -10,7 +11,8 @@ type HookInput = {
 export const handle = async ({ event, resolve }: HookInput): Promise<Response> => {
   const response = await resolve(event);
 
-  if (event.url.pathname !== "/auth/login") {
+  const acceptsHtml = event.request.headers.get("accept")?.includes("text/html");
+  if (!acceptsHtml || !["GET", "HEAD"].includes(event.request.method)) {
     return response;
   }
 
