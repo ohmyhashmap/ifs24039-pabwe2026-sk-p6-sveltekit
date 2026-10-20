@@ -11,7 +11,10 @@ import {
 import { fail, mockFetch, ok } from "../utils";
 
 describe("token & base url", () => {
-  afterEach(() => vi.unstubAllEnvs());
+  afterEach(() => {
+    vi.unstubAllEnvs();
+    vi.unstubAllGlobals();
+  });
 
   it("membaca base url dari env dan menghapus garis miring akhir", () => {
     expect(getBaseUrl()).toBe("https://open-api.delcom.org/api/v1");
@@ -33,6 +36,13 @@ describe("token & base url", () => {
     expect(getToken()).toBe("abc");
     clearToken();
     expect(getToken()).toBeNull();
+  });
+
+  it("aman dipanggil saat localStorage tidak tersedia di server", () => {
+    vi.stubGlobal("localStorage", undefined);
+    expect(getToken()).toBeNull();
+    expect(() => setToken("abc")).not.toThrow();
+    expect(() => clearToken()).not.toThrow();
   });
 });
 

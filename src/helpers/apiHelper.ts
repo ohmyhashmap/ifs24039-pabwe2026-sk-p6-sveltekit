@@ -21,9 +21,14 @@ export const getBaseUrl = (): string => {
   return baseUrl;
 };
 
-export const getToken = (): string | null => localStorage.getItem(TOKEN_KEY);
-export const setToken = (token: string): void => localStorage.setItem(TOKEN_KEY, token);
-export const clearToken = (): void => localStorage.removeItem(TOKEN_KEY);
+export const getToken = (): string | null =>
+  typeof localStorage === "undefined" ? null : localStorage.getItem(TOKEN_KEY);
+export const setToken = (token: string): void => {
+  if (typeof localStorage !== "undefined") localStorage.setItem(TOKEN_KEY, token);
+};
+export const clearToken = (): void => {
+  if (typeof localStorage !== "undefined") localStorage.removeItem(TOKEN_KEY);
+};
 
 function buildUrl(path: string, query?: RequestOptions["query"]): string {
   const params = new URLSearchParams();

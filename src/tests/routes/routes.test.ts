@@ -18,8 +18,8 @@ beforeEach(() => {
 });
 
 describe("rute", () => {
-  it("+layout.ts menonaktifkan SSR dan prerender", () => {
-    expect(rootLayout.ssr).toBe(false);
+  it("+layout.ts mengaktifkan SSR dan menonaktifkan prerender", () => {
+    expect(rootLayout.ssr).toBe(true);
     expect(rootLayout.prerender).toBe(false);
   });
 
@@ -55,14 +55,16 @@ describe("rute", () => {
     localStorage.clear();
     const login = render(LoginRoute);
     expect(screen.getByRole("heading", { name: "Masuk" })).toBeInTheDocument();
+    expect(screen.getAllByRole("main")).toHaveLength(1);
     login.unmount();
     render(RegisterRoute);
     expect(screen.getByRole("heading", { name: "Buat akun" })).toBeInTheDocument();
   });
 
-  it("layout auth membungkus konten rute", () => {
+  it("layout auth tidak menambahkan landmark duplikat", () => {
     render(AuthLayoutRoute);
-    expect(screen.getByRole("heading", { name: "Belajar lewat video, kapan saja." })).toBeInTheDocument();
+    expect(screen.queryByRole("main")).toBeNull();
+    expect(screen.queryByRole("heading", { level: 1 })).toBeNull();
   });
 
   it("/users dan /profile", async () => {
@@ -70,6 +72,7 @@ describe("rute", () => {
     mockFetch({ "GET /users": ok("ok", { users: [user({ name: "Pengguna Satu" })] }) });
     const users = render(UsersRoute);
     expect(await screen.findByText("Pengguna Satu")).toBeInTheDocument();
+    expect(document.querySelector('img[alt=""]')).not.toBeNull();
     users.unmount();
     setPage("/profile");
     render(ProfileRoute);

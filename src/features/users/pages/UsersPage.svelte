@@ -25,7 +25,7 @@
     <ul class="mt-6 divide-y divide-ink-100 rounded-2xl border border-ink-100 bg-white">
       {#each $usersStore.users as user (user.id)}
         <li class="flex items-center gap-4 p-4">
-          <Avatar name={user.name} src={user.photo} />
+          <Avatar name={user.name} src={user.photo} decorative />
           <div class="min-w-0 flex-1">
             <p class="truncate font-semibold">
               <span>{user.name}</span>
